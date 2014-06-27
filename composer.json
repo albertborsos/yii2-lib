@@ -1,7 +1,7 @@
 {
-    "name": "albertborsos/yii2lib",
+    "name": "albertborsos/yii2-lib",
     "description": "A collection of useful classes",
-    "homepage": "https://github.com/albertborsos/yii2lib#readme",
+    "homepage": "https://github.com/albertborsos/yii2-lib#readme",
     "type": "library",
     "license": "MIT",
     "require": {
