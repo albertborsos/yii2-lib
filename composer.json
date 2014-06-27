@@ -1,0 +1,15 @@
+{
+    "name": "albertborsos/yii2lib",
+    "description": "A collection of useful classes",
+    "homepage": "https://github.com/albertborsos/yii2lib#readme",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.0",
+    },
+    "autoload": {
+        "psr-4": {
+            "albertborsos\\yii2lib\\": ""
+        }
+    }
+}
