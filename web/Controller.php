@@ -6,7 +6,7 @@
  * Time: 11:17
  */
 
-namespace albertborsos\yii2lib;
+namespace albertborsos\yii2lib\web;
 
 use yii\base\Action;
 use yii\web\BadRequestHttpException;
