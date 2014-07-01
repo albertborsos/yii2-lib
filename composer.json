@@ -7,7 +7,8 @@
     "require": {
         "php": ">=5.4.0",
         "kartik-v/yii2-widgets": "dev-master",
-        "2amigos/yii2-editable-widget" : "*"
+        "2amigos/yii2-editable-widget" : "*",
+        "ivaynberg/select2": "3.5.0"
     },
     "autoload": {
         "psr-4": {
