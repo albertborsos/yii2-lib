@@ -14,15 +14,31 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 class Editable {
-    public static function select2($name, $pk, $defaultValue, $url, $sourceArray, $pluginOptions = []){
+    public static function select($name, $pk, $defaultValue, $defaultText, $url, $sourceArray, $pluginOptions = []){
         return XEditable::widget(ArrayHelper::merge([
             'name' => $name,
-            'value' => $defaultValue,
+            'value' => $defaultText,
+            'url' => $url,
+            'type' => 'select',
+            'mode' => 'pop',
+            'clientOptions' => [
+                'pk' => $pk,
+                'defaultValue' => $defaultValue,
+                'placement' => 'top',
+                'source' => self::compileSourceArray($sourceArray)
+            ]
+        ], $pluginOptions));
+    }
+    public static function select2($name, $pk, $defaultValue, $defaultText, $url, $sourceArray, $pluginOptions = []){
+        return XEditable::widget(ArrayHelper::merge([
+            'name' => $name,
+            'value' => $defaultText,
             'url' => $url,
             'type' => 'select2',
             'mode' => 'pop',
             'clientOptions' => [
                 'pk' => $pk,
+                'defaultValue' => $defaultValue,
                 'placement' => 'top',
                 'select2' => [
                     'width' => '230px'
@@ -37,7 +53,8 @@ class Editable {
 
         foreach($sourceArray as $key => $value){
             $result[] = [
-                'id' => $key,
+                'id' => $key, //select2
+                'value' => $key, // normal select
                 'text' => $value,
             ];
         }
