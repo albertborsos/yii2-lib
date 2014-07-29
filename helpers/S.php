@@ -29,4 +29,37 @@ class S {
         }
         if ($isExit) exit;
     }
+
+    /**
+     * recursively returns the arrays value by key fields separated with '.'
+
+     * @param $array
+     * @param $path - string, array keys separated with '.'
+     * @param null $defaultValue
+     * @return null
+     */
+    public static function get($array, $path, $defaultValue = null){
+
+        if (isset($array[$path])){
+            // returns the element if it has '.' in the key field
+            return $array[$path];
+        }else{
+            $keys = explode('.', $path);
+            if (count($keys) > 1){
+                //pop-olom az kulcs-ot
+                $array_key = array_shift($keys);
+                $new_path = implode('.', $keys);
+                $value = self::get($array, $array_key);
+                // rekurzívan lefut újra
+                return self::get($value, $new_path, $defaultValue);
+            }else{
+                // csak 1 elemű
+                if (is_array($array)){
+                    return isset($array[$path]) ? $array[$path] : $defaultValue;
+                }else{
+                    return $defaultValue;
+                }
+            }
+        }
+    }
 } 
