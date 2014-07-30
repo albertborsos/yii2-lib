@@ -17,7 +17,8 @@ class Mailer {
 
     public static function sendMail($to, $subject, $content, $from = null){
 
-        $from = self::setSender($from);
+        $from    = self::setSender($from);
+        $subject = self::setSubject($subject);
 
         return Yii::$app->mailer->compose()
             ->setSubject($subject)
@@ -51,6 +52,10 @@ class Mailer {
         $domain = str_replace($needle, '', $domain);
 
         return 'noreply@'.$domain;
+    }
+
+    private static function setSubject($subject){
+        return '['.Yii::$app->name.'] '.$subject;
     }
 
 } 
