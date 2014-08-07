@@ -11,6 +11,7 @@ namespace albertborsos\yii2lib\db;
 use albertborsos\yii2lib\helpers\Date;
 use albertborsos\yii2user\models\Users;
 use yii\helpers\Html;
+use Yii;
 
 class ActiveRecord extends \yii\db\ActiveRecord{
 
@@ -35,5 +36,15 @@ class ActiveRecord extends \yii\db\ActiveRecord{
         }
 
         return $result;
+    }
+
+    private function setOwnerAndTime(){
+        if ($this->isNewRecord){
+            $this->created_at = time();
+            $this->created_user = Yii::$app->user->id;
+        }else{
+            $this->updated_at = time();
+            $this->updated_user = Yii::$app->user->id;
+        }
     }
 } 
