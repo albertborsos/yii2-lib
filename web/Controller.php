@@ -58,7 +58,7 @@ class Controller extends WebController{
                 default:
                     $this->breadcrumbs = [
                         ['label' => $module->name, 'url' => ['/'.$module->id.'/']],
-                        ['label' => $this->name, 'url' => ['/'.$module->id.'/'.$this->id.'/'.$action->id]],
+                        ['label' => $this->name, 'url' => ['/'.$module->id.'/'.$this->id.'/'.$this->defaultAction]],
                         ['label' => $this->getActionName($action)],
                     ];
                     break;
