@@ -38,7 +38,7 @@ class ActiveRecord extends \yii\db\ActiveRecord{
         return $result;
     }
 
-    private function setOwnerAndTime(){
+    protected function setOwnerAndTime(){
         if ($this->isNewRecord){
             $this->created_at = time();
             $this->created_user = Yii::$app->user->id;
