@@ -37,4 +37,14 @@ class Widgets {
             ]
         );
     }
+
+    public static function redactorOptions(){
+        $options = [
+            'minHeight'    => 200,
+            'convertLinks' => false,
+            'convertDivs'  => false,
+        ];
+
+        return $options;
+    }
 } 
