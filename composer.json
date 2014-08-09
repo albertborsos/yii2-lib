@@ -9,7 +9,8 @@
         "kartik-v/yii2-widgets": "dev-master",
         "kartik-v/yii2-grid": "dev-master",
         "2amigos/yii2-editable-widget" : "*",
-        "ivaynberg/select2": "3.5.0"
+        "ivaynberg/select2": "3.5.0",
+        "asofter/yii2-imperavi-redactor": "dev-master"
     },
     "autoload": {
         "psr-4": {
