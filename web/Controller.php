@@ -82,4 +82,8 @@ class Controller extends WebController{
     public function addActionNames($names){
         $this->actionName = array_merge($this->actionName, $names);
     }
+
+    public function setTheme($type){
+        Yii::$app->view->theme->pathMap = ['@app/views' => '@common/themes/'.$type.'/views'];
+    }
 } 
