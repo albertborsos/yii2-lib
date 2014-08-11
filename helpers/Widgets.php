@@ -47,4 +47,15 @@ class Widgets {
 
         return $options;
     }
+
+    public static function select2TagPluginOptions($sourceArray = []){
+        $options = [
+            'tags'               => $sourceArray,
+            'minimumInputLength' => 1,
+            'width'              => '100%',
+            'tokenSeparators'    => array(',', '\n'),
+        ];
+
+        return $options;
+    }
 } 

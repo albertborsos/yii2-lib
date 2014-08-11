@@ -11,7 +11,7 @@ namespace albertborsos\yii2lib\helpers;
 
 class Date {
     public static function timestampToDate($timestamp, $formatTo = 'Y-m-d H:i'){
-        return date_format($timestamp, $formatTo);
+        return date($formatTo, $timestamp);
     }
 
     public static function reformatDateTime($datetime, $formatFrom = 'Y-m-d H:i:s', $formatTo = 'Y-m-d H:i'){

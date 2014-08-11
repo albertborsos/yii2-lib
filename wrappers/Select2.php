@@ -52,11 +52,14 @@ SCRIPT;
 
         }
 
-        public static function baseWidget($name, $htmlOptions, $pluginOptions = []){
+        public static function baseWidget($name, $value, $sourceArray, $htmlOptions = [], $pluginOptions = []){
 
             return \kartik\widgets\Select2::widget([
                 'name'          => $name,
+                'language'      => 'hu',
                 'options'       => $htmlOptions,
+                'value'         => $value,
+                'data'          => $sourceArray,
                 'pluginOptions' => ArrayHelper::merge([
                     'allowClear'         => true,
                     'minimumInputLength' => 3,
