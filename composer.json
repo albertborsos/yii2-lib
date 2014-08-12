@@ -11,8 +11,7 @@
         "2amigos/yii2-editable-widget" : "*",
         "2amigos/yii2-file-upload-widget" : "*",
         "ivaynberg/select2": "3.5.0",
-        "asofter/yii2-imperavi-redactor": "dev-master",
-        "yurkinx/yii2-image": "dev-master"
+        "asofter/yii2-imperavi-redactor": "dev-master"
     },
     "autoload": {
         "psr-4": {
