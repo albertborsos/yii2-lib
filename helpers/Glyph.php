@@ -42,7 +42,7 @@ class Glyph {
         //This method is faster than 2ms Html::addCssClass($htmlOptions,'glyphicon '.$icon);
         $htmlOptions['class'] = isset($htmlOptions['class'])?$htmlOptions['class'].' glyphicon '.$icon:'glyphicon '.$icon;
 
-        return Html::tag($tag,$content,$htmlOptions).'&nbsp;';
+        return Html::tag($tag,$content,$htmlOptions);
     }
 
     //
