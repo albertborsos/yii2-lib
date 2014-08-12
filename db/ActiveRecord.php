@@ -9,6 +9,7 @@
 namespace albertborsos\yii2lib\db;
 
 use albertborsos\yii2lib\helpers\Date;
+use albertborsos\yii2lib\helpers\S;
 use albertborsos\yii2user\models\Users;
 use yii\helpers\Html;
 use Yii;
@@ -46,5 +47,22 @@ class ActiveRecord extends \yii\db\ActiveRecord{
             $this->updated_at = time();
             $this->updated_user = Yii::$app->user->id;
         }
+    }
+
+    protected function getNextID(){
+        $sql = 'select auto_increment
+                from information_schema.TABLES
+                where TABLE_NAME=:table_name
+                and TABLE_SCHEMA=:schema_name';
+
+        $tableName   = $this->tableName();
+        $explodedDSN = explode('dbname=', Yii::$app->db->schema->db->dsn);
+        $schemaName  = S::get($explodedDSN, '1');
+
+        $cmd = Yii::$app->db->createCommand($sql);
+        $cmd->bindValue(':table_name', $tableName);
+        $cmd->bindValue(':schema_name', $schemaName);
+
+        return $cmd->queryScalar();
     }
 } 
