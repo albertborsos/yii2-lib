@@ -14,6 +14,19 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 class Editable {
+    public static function input($name, $pk, $defaultValue, $url, $pluginOptions = []){
+        return XEditable::widget(ArrayHelper::merge([
+            'name' => $name,
+            'value' => $defaultValue,
+            'url' => $url,
+            'type' => 'text',
+            'mode' => 'pop',
+            'clientOptions' => [
+                'pk' => $pk,
+                'placement' => 'top',
+            ]
+        ], $pluginOptions));
+    }
     public static function select($name, $pk, $defaultValue, $defaultText, $url, $sourceArray, $pluginOptions = []){
         return XEditable::widget(ArrayHelper::merge([
             'name' => $name,
