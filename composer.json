@@ -11,7 +11,8 @@
         "2amigos/yii2-editable-widget" : "*",
         "2amigos/yii2-file-upload-widget" : "*",
         "ivaynberg/select2": "3.5.0",
-        "asofter/yii2-imperavi-redactor": "dev-master"
+        "asofter/yii2-imperavi-redactor": "dev-master",
+        "devlity/yii2-aceeditor": "*"
     },
     "autoload": {
         "psr-4": {
