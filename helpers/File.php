@@ -14,25 +14,28 @@ use yii\helpers\BaseFileHelper;
 
 class File extends BaseFileHelper {
 
-    public static function dirContentToDataProvider($path, $options){
+    public static function dirsContentToDataProvider($paths, $options){
         $source = [];
-        $dirContent = self::findFiles($path, $options);
+        foreach($paths as $path){
+            $dirContent = self::findFiles($path, $options);
 
-        foreach($dirContent as $id => $filePath){
-            $exploded = explode('/', $filePath);
-            $fileName = $exploded[count($exploded)-1];
+            foreach($dirContent as $id => $filePath){
+                $exploded = explode('/', $filePath);
+                $fileName = $exploded[count($exploded)-1];
 
-            $source[] = [
-                'id' => $id,
-                'fileName' => $fileName,
-                'filePath' => $filePath,
-            ];
-
+                if (is_writable($filePath)){
+                    $source[] = [
+                        'id' => $id,
+                        'fileName' => $fileName,
+                        'filePath' => $filePath,
+                    ];
+                }
+            }
         }
 
         return new ArrayDataProvider([
             'allModels' => $source,
-            'key' => 'fileName',
+            'key' => 'filePath',
         ]);
     }
 
