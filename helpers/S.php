@@ -62,4 +62,8 @@ class S {
             }
         }
     }
+
+    public static function powered(){
+        return 'Powered by <a href="http://www.yiiframework.com/" rel="external" target="_blank">Yii Framework</a>';
+    }
 } 
