@@ -45,6 +45,7 @@ class Controller extends WebController{
     }
 
     private function setBreadcrumbs(Action $action){
+        $view = Yii::$app->getView();
         if (isset($this->module)){
             $module = $this->module;
             $controller = $this;
@@ -54,6 +55,8 @@ class Controller extends WebController{
                         ['label' => $module->name , 'url' => ['/'.$module->id.'/']],
                         ['label' => $this->getActionName($action)],
                     ];
+
+                    $view->title = $this->getActionName($action).' | '.Yii::$app->name;
                     break;
                 default:
                     $this->breadcrumbs = [
@@ -61,6 +64,7 @@ class Controller extends WebController{
                         ['label' => $this->name, 'url' => ['/'.$module->id.'/'.$this->id.'/'.$this->defaultAction]],
                         ['label' => $this->getActionName($action)],
                     ];
+                    $view->title = $this->getActionName($action).' - '.$this->name.' | '.Yii::$app->name;
                     break;
             }
         }else{
@@ -68,6 +72,7 @@ class Controller extends WebController{
                 ['label' => $this->name, 'url' => ['/'.$this->id.'/'.$this->defaultAction]],
                 ['label' => $this->getActionName($action)],
             ];
+            $view->title = $this->getActionName($action).' - '.$this->name.' | '.Yii::$app->name;
         }
     }
 
