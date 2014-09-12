@@ -46,6 +46,16 @@
             return Html::tag($tag, $content, $htmlOptions);
         }
 
+        public static function iconsDataContent(){
+            $icons = self::icons();
+            $array = [];
+            foreach($icons as $icon){
+                $array[$icon] =['data-content' => '<i class="glyphicon '.$icon.'"></i> '.str_replace('glyphicon-', '', $icon)];
+            }
+
+            return $array;
+        }
+
         public static function icons()
         {
             return [
