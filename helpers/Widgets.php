@@ -59,11 +59,12 @@ class Widgets {
         return $options;
     }
 
-    public static function select2PluginOptions($sourceArray = []){
+    public static function select2PluginOptions($sourceArray = [], $placeholder){
         $options = [
             'data' => $sourceArray,
             'options' => [
                 'width' => '100%',
+                'placeholder' => $placeholder,
             ],
         ];
 
