@@ -8,8 +8,10 @@
 
 namespace albertborsos\yii2lib\helpers;
 
+use frontend\modules\budget\models\Pockets;
 use Yii;
 use yii\bootstrap\Alert;
+use yii\helpers\ArrayHelper;
 use yii\widgets\Breadcrumbs;
 
 
@@ -59,12 +61,13 @@ class Widgets {
         return $options;
     }
 
-    public static function select2PluginOptions($sourceArray = [], $placeholder){
+    public static function select2PluginOptions($sourceArray = [], $placeholder = null, $options = []){
         $options = [
             'data' => $sourceArray,
             'options' => [
                 'width' => '100%',
                 'placeholder' => $placeholder,
+                'options' => $options,
             ],
         ];
 
