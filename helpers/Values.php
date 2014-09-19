@@ -19,6 +19,10 @@ class Values {
         }
     }
 
+    public static function numberFormat($number, $prefix = '', $suffix = '', $decimals = 0, $decimalPoint = ',', $thousandSeparator = ' '){
+        return $prefix .' '. number_format($number, $decimals, $decimalPoint, $thousandSeparator) . ' ' . $suffix;
+    }
+
     public static function items($category, $id = null, $returnArray = true){
         $array = array();
         switch ($category) {
