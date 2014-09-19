@@ -8,7 +8,6 @@
 
 namespace albertborsos\yii2lib\helpers;
 
-
 class Values {
 
     public static function arrayGet($key, $array, $defaultValue = null){
@@ -21,6 +20,10 @@ class Values {
 
     public static function numberFormat($number, $prefix = '', $suffix = '', $decimals = 0, $decimalPoint = ',', $thousandSeparator = ' '){
         return $prefix .' '. number_format($number, $decimals, $decimalPoint, $thousandSeparator) . ' ' . $suffix;
+    }
+
+    public static function removeWhiteSpaces($value){
+        return trim(preg_replace('/\s+/', '', $value));
     }
 
     public static function items($category, $id = null, $returnArray = true){
