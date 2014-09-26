@@ -11,6 +11,7 @@ namespace albertborsos\yii2lib\db;
 use albertborsos\yii2lib\helpers\Date;
 use albertborsos\yii2lib\helpers\S;
 use albertborsos\yii2user\models\Users;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use Yii;
 
@@ -37,6 +38,11 @@ class ActiveRecord extends \yii\db\ActiveRecord{
         }
 
         return $result;
+    }
+
+    public static function asDropDown($id, $name, $condition){
+        $models = self::findAll($condition);
+        return ArrayHelper::map($models, $id, $name);
     }
 
     protected function setOwnerAndTime(){
