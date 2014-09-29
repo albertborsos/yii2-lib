@@ -19,7 +19,7 @@ class Values {
     }
 
     public static function numberFormat($number, $prefix = '', $suffix = '', $decimals = 0, $decimalPoint = ',', $thousandSeparator = ' '){
-        return $prefix .' '. number_format($number, $decimals, $decimalPoint, $thousandSeparator) . ' ' . $suffix;
+        return $prefix . number_format($number, $decimals, $decimalPoint, $thousandSeparator) . $suffix;
     }
 
     public static function removeWhiteSpaces($value){
