@@ -31,8 +31,8 @@ class Modal {
                     <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            '.$header.'
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                            '.$header.'
                           </div>
                           <div class="modal-body">
                             '.$content.'
