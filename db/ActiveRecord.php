@@ -48,10 +48,10 @@ class ActiveRecord extends \yii\db\ActiveRecord{
     protected function setOwnerAndTime(){
         if ($this->isNewRecord){
             $this->created_at = time();
-            $this->created_user = Yii::$app->user->id;
+            $this->created_user = Yii::$app->getUser()->getId();
         }else{
             $this->updated_at = time();
-            $this->updated_user = Yii::$app->user->id;
+            $this->updated_user = Yii::$app->getUser()->getId();
         }
     }
 
