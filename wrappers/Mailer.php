@@ -15,6 +15,13 @@ use Yii;
 
 class Mailer {
 
+    /**
+     * @param $to string(email) or ['email' => 'name']
+     * @param $subject
+     * @param $content
+     * @param null $from string(email) or ['email' => 'name']
+     * @return bool
+     */
     public static function sendMail($to, $subject, $content, $from = null){
 
         $from    = self::setSender($from);
