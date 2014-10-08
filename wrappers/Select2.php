@@ -22,7 +22,7 @@
          * @param $url
          * @param array $htmlOptions
          */
-        public static function ajaxAutocomplete($name, $url, $htmlOptions)
+        public static function ajaxAutocomplete($name, $value, $url, $htmlOptions)
         {
             // The controller action that will render the list
             $url = Url::to($url);
@@ -48,7 +48,7 @@ SCRIPT;
                 'initSelection'      => new JsExpression($initScript)
             ];
 
-            return self::baseWidget($name,$htmlOptions, $pluginOptions);
+            return self::baseWidget($name, $value, [], $htmlOptions, $pluginOptions);
 
         }
 
