@@ -45,6 +45,11 @@ class Widgets {
             'minHeight'    => 200,
             'convertLinks' => false,
             'convertDivs'  => false,
+            'buttons' => ['html', 'formatting', 'bold', 'italic', 'deleted',
+                'unorderedlist', 'orderedlist', 'outdent', 'indent',
+                'image', 'link', 'alignment', 'horizontalrule']
+            // additional buttons
+            // 'underline', 'alignleft', 'aligncenter', 'alignright', 'justify'
         ];
 
         return $options;
