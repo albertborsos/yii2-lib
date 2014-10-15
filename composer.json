@@ -11,7 +11,7 @@
         "2amigos/yii2-editable-widget" : "*",
         "2amigos/yii2-file-upload-widget" : "*",
         "ivaynberg/select2": "3.5.0",
-        "asofter/yii2-imperavi-redactor": "dev-master",
+        "zyx/yii2-imperavi-redactor": "dev-master",
         "trntv/yii2-aceeditor": "*",
         "cakebake/yii2-bootstrap-select": "*"
     },
