@@ -43,8 +43,8 @@ class Widgets {
     public static function redactorOptions(){
         $options = [
             'minHeight'    => 200,
-            'convertLinks' => false,
-            'convertDivs'  => false,
+            'convertUrlLinks' => false,
+            'replaceDivs'  => false,
             'buttonSource' => true,
             'buttons' => ['html', 'formatting', 'bold', 'italic', 'deleted',
                 'unorderedlist', 'orderedlist', 'outdent', 'indent',
