@@ -45,6 +45,7 @@ class Widgets {
             'minHeight'    => 200,
             'convertLinks' => false,
             'convertDivs'  => false,
+            'buttonSource' => true,
             'buttons' => ['html', 'formatting', 'bold', 'italic', 'deleted',
                 'unorderedlist', 'orderedlist', 'outdent', 'indent',
                 'image', 'link', 'alignment', 'horizontalrule']
