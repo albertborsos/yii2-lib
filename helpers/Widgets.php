@@ -46,6 +46,7 @@ class Widgets {
             'convertUrlLinks' => false,
             'replaceDivs'  => false,
             'buttonSource' => true,
+			'removeEmptyTags' => true,
             'buttons' => ['html', 'formatting', 'bold', 'italic', 'deleted',
                 'unorderedlist', 'orderedlist', 'outdent', 'indent',
                 'image', 'link', 'alignment', 'horizontalrule']
