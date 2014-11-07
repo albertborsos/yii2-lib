@@ -8,6 +8,7 @@
         "php": ">=5.4.0",
         "kartik-v/yii2-widgets": "dev-master",
         "kartik-v/yii2-grid": "dev-master",
+		"kartik-v/yii2-helpers": "dev-master",
         "2amigos/yii2-editable-widget" : "*",
         "2amigos/yii2-file-upload-widget" : "*",
         "ivaynberg/select2": "3.5.0",
