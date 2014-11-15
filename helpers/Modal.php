@@ -26,8 +26,9 @@ class Modal {
         if (is_null($footer)){
             $footer = Html::button('Bezárás', ['class' => 'btn btn-default', 'data-dismiss' => 'modal']);
         }
+
         if (!is_null($header)) $header = '<h4 class="modal-title">'.$header.'</h4>';
-        return '<div id="myModalBox'.$id.'" class="fade modal" role="dialog" tabindex="-1" style="'.$style.'">
+        return '<div id="myModalBox'.$id.'" class="fade modal" role="dialog" tabindex="-1" style="'.$style.'" data-backdrop="static">
                     <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
