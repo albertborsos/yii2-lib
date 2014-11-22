@@ -80,4 +80,17 @@ class Widgets {
 
         return $options;
     }
+	public static function select2MultiPluginOptions($sourceArray = [], $placeholder = null, $options = []){
+        $options = [
+            'data' => $sourceArray,
+            'options' => [
+				'multiple' => true,
+                'width' => '100%',
+                'placeholder' => $placeholder,
+                'options' => $options,
+            ],
+        ];
+
+        return $options;
+    }
 }
