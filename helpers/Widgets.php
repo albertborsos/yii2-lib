@@ -8,7 +8,6 @@
 
 namespace albertborsos\yii2lib\helpers;
 
-use frontend\modules\budget\models\Pockets;
 use Yii;
 use yii\bootstrap\Alert;
 use yii\helpers\ArrayHelper;

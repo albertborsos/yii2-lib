@@ -15,7 +15,9 @@ use yii\helpers\VarDumper;
 
 class ErrorHandler extends \yii\web\ErrorHandler {
     protected function renderException($exception){
-        $this->sendErrorMessageToDevelopers($exception);
+		if(!strpos(Yii::$app->getUrlManager()->getBaseUrl(), 'localhost')){
+        	$this->sendErrorMessageToDevelopers($exception);
+		}
         parent::renderException($exception);
     }
 
