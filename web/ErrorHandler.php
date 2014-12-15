@@ -35,7 +35,10 @@ class ErrorHandler extends \yii\web\ErrorHandler {
 			$sender = ['noreply@'.Yii::$app->urlManager->baseUrl => 'Web User'];
 		}
 
-        $subject = '#'.$errors['status'].' '.$errors['name'];
+		$status = S::get($errors, 'status');
+		$status = is_null($status) ? S::get($errors, 'code') : $status;
+
+		$subject = '#'.$status.' '.S::get($errors, 'name');
 
         $content  = '<h3>'.Yii::$app->name.' alkalmazásban hiba történt!</h3>';;
 
