@@ -41,6 +41,7 @@ class Widgets {
 
     public static function redactorOptions(){
         $options = [
+			'lang' => 'en',
             'minHeight'    => 200,
             'convertUrlLinks' => false,
             'replaceDivs'  => false,
