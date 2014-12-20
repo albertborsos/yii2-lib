@@ -22,14 +22,14 @@ class Modal {
      * @param null $style
      * @return string
      */
-    public static function frame($id, $header, $content, $footer = null, $style = null){
+    public static function frame($id, $header, $content, $footer = null, $modalStyle = null, $modalDialogStyle = null){
         if (is_null($footer)){
             $footer = Html::button('Bezárás', ['class' => 'btn btn-default', 'data-dismiss' => 'modal']);
         }
 
         if (!is_null($header)) $header = '<h4 class="modal-title">'.$header.'</h4>';
-        return '<div id="myModalBox'.$id.'" class="fade modal" role="dialog" tabindex="-1" style="'.$style.'" data-backdrop="static">
-                    <div class="modal-dialog">
+        return '<div id="myModalBox'.$id.'" class="fade modal" role="dialog" tabindex="-1" style="'.$modalStyle.'" data-backdrop="static">
+                    <div class="modal-dialog" style="'.$modalDialogStyle.'">
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
