@@ -27,14 +27,14 @@ class ErrorHandler extends \yii\web\ErrorHandler {
     private function sendErrorMessageToDevelopers($exception){
         $errors = $this->convertExceptionToArray($exception);
 
+
         $emails       = S::get(Yii::$app->params, 'errorEmails', []);
         $userIdentity = Yii::$app->getUser()->getIdentity();
 		if (!is_null($userIdentity)){
         	$sender = [$userIdentity->getEmail() => $userIdentity->getFullname()];
 		}else{
-			$sender = ['noreply@'.Yii::$app->urlManager->baseUrl => 'Web User'];
+			$sender = ['noreply@'.Yii::$app->getRequest()->getServerName() => 'Web User'];
 		}
-
 		$status = S::get($errors, 'status');
 		$status = is_null($status) ? S::get($errors, 'code') : $status;
 
