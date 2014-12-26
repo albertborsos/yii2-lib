@@ -14,6 +14,9 @@ use Yii;
 use yii\helpers\VarDumper;
 
 class ErrorHandler extends \yii\web\ErrorHandler {
+
+    public $emails = [];
+
     protected function renderException($exception){
 		if(!strpos(Yii::$app->getUrlManager()->getBaseUrl(), 'localhost')){
         	$this->sendErrorMessageToDevelopers($exception);
@@ -27,8 +30,6 @@ class ErrorHandler extends \yii\web\ErrorHandler {
     private function sendErrorMessageToDevelopers($exception){
         $errors = $this->convertExceptionToArray($exception);
 
-
-        $emails       = S::get(Yii::$app->params, 'errorEmails', []);
         $userIdentity = Yii::$app->getUser()->getIdentity();
 		if (!is_null($userIdentity)){
         	$sender = [$userIdentity->getEmail() => $userIdentity->getFullname()];
@@ -55,7 +56,7 @@ class ErrorHandler extends \yii\web\ErrorHandler {
         $content .= '<p><b>GET paraméterek</b> '.VarDumper::dumpAsString(Yii::$app->request->get(), 10, true).'</p>';
         $content .= '<p><b>POST paraméterek</b> '.VarDumper::dumpAsString(Yii::$app->request->post(), 10, true).'</p>';
 
-        foreach($emails as $recipient){
+        foreach($this->emails as $recipient){
             Mailer::sendMail($recipient, $subject, $content, $sender);
         }
     }
