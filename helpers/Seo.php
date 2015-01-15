@@ -50,4 +50,12 @@ class Seo {
 				break;
 		}
 	}
+
+	public static function noIndex(){
+		$view = Yii::$app->getView();
+		$view->registerMetaTag([
+			'name' =>Seo::TYPE_ROBOTS,
+			'content' => Seo::NOINDEX,
+		]);
+	}
 }
