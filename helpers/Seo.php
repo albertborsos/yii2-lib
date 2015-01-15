@@ -64,17 +64,20 @@ class Seo {
 
 	public static function removeItemFromMetaTags($needle){
 		$metaTags = Yii::$app->getView()->metaTags;
-		$results = array_filter($metaTags, function ($item) use ($needle) {
-			if (stripos($item, $needle) !== false) {
-				return true;
-			}
-			return false;
-		});
+		if(!is_null($metaTags)){
+			$results = array_filter($metaTags, function ($item) use ($needle) {
+				if (stripos($item, $needle) !== false) {
+					return true;
+				}
+				return false;
+			});
 
-		foreach($results as $key => $value){
-			if(isset($metaTags[$key])){
-				unset(Yii::$app->getView()->metaTags[$key]);
+			foreach($results as $key => $value){
+				if(isset($metaTags[$key])){
+					unset(Yii::$app->getView()->metaTags[$key]);
+				}
 			}
 		}
+
 	}
 }
