@@ -53,9 +53,28 @@ class Seo {
 
 	public static function noIndex(){
 		$view = Yii::$app->getView();
+
+		self::removeItemFromMetaTags(Seo::TYPE_ROBOTS);
+
 		$view->registerMetaTag([
 			'name' =>Seo::TYPE_ROBOTS,
 			'content' => Seo::NOINDEX,
 		]);
+	}
+
+	public static function removeItemFromMetaTags($needle){
+		$metaTags = Yii::$app->getView()->metaTags;
+		$results = array_filter($metaTags, function ($item) use ($needle) {
+			if (stripos($item, $needle) !== false) {
+				return true;
+			}
+			return false;
+		});
+
+		foreach($results as $key => $value){
+			if(isset($metaTags[$key])){
+				unset(Yii::$app->getView()->metaTags[$key]);
+			}
+		}
 	}
 }
