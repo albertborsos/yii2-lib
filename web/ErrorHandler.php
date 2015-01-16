@@ -13,14 +13,30 @@ use albertborsos\yii2lib\wrappers\Mailer;
 use Yii;
 use yii\helpers\VarDumper;
 
+
+/**
+ *
+ * insert to `components`
+ *
+ *  'errorHandler' => [
+ *      'class' => '\albertborsos\yii2lib\web\ErrorHandler',
+ *      'errorAction' => 'cms/default/error',
+ *      'emails' => [
+ *          ['errors@yourdomain.com' => 'Your Name'],
+ *      ],
+ *  ],
+ *
+ * Class ErrorHandler
+ * @package albertborsos\yii2lib\web
+ */
 class ErrorHandler extends \yii\web\ErrorHandler {
 
     public $emails = [];
 
     protected function renderException($exception){
-		if(!strpos(Yii::$app->getUrlManager()->getBaseUrl(), 'localhost')){
-        	$this->sendErrorMessageToDevelopers($exception);
-		}
+        if(YII_ENV !== 'dev'){
+            $this->sendErrorMessageToDevelopers($exception);
+        }
         parent::renderException($exception);
     }
 
