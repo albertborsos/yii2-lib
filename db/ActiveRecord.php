@@ -10,7 +10,7 @@ namespace albertborsos\yii2lib\db;
 
 use albertborsos\yii2lib\helpers\Date;
 use albertborsos\yii2lib\helpers\S;
-use albertborsos\yii2user\models\Users;
+use albertborsos\yii2cms\models\Users;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use Yii;
