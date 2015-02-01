@@ -46,8 +46,8 @@ class ActiveRecord extends \yii\db\ActiveRecord{
         return $result;
     }
 
-    public static function asDropDown($id, $name, $condition){
-        $models = self::findAll($condition);
+    public static function asDropDown($id, $name, $condition, $order = []){
+        $models = self::find()->where($condition)->orderBy($order)->all();
         return ArrayHelper::map($models, $id, $name);
     }
 
