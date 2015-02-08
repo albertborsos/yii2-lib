@@ -87,5 +87,6 @@ class S {
         }catch (\Exception $e){
             print $e->getMessage();
         }
+        print 'Migrated up successfully!';
     }
 } 
