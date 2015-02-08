@@ -74,7 +74,7 @@ class S {
     }
 
     public static function migrateUp(){
-        $migrationPaths = S::get(\Yii::$app->params, 'migrateUp.migrationPaths', []);
+        $migrationPaths = S::get(\Yii::$app->params, 'cms.migrationPaths', []);
         try{
             foreach($migrationPaths as $migrationPath){
                 $cmd = 'migrate/up --migrationPath='.$migrationPath.' --interactive=0 --color=0';
