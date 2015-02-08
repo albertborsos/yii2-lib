@@ -81,10 +81,10 @@ class S {
                 if(!function_exists('exec')){
                     throw new \Exception('The "exec" function is not allowed on the server');
                 }else{
-                    exec(PHP_BINDIR . '/php '.Yii::getAlias('@app/../yii').' '.$cmd);
+                    print exec(PHP_BINDIR . '/php '.Yii::getAlias('@app/../yii').' '.$cmd . ' 2>&1').' - '.$migrationPath.'<br />';
                 }
             }
-            print 'Migrated up successfully!';
+            print 'Done!';
         }catch (\Exception $e){
             print $e->getMessage();
         }
