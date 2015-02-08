@@ -84,9 +84,9 @@ class S {
                     exec(PHP_BINDIR . '/php '.Yii::getAlias('@app/../yii').' '.$cmd);
                 }
             }
+            print 'Migrated up successfully!';
         }catch (\Exception $e){
             print $e->getMessage();
         }
-        print 'Migrated up successfully!';
     }
 } 
