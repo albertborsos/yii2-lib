@@ -27,20 +27,32 @@ class ActiveRecord extends \yii\db\ActiveRecord{
     }
 
     public static function showLastModifiedInfo($model){
-        $user = Users::findIdentity($model->updated_user);/** @var $user \albertborsos\yii2cms\models\Users */
-        if(!is_null($user)){
-            if (!is_null($model->updated_at) && !is_null($model->updated_user)){
-                $result = $user->getFullname();
-                $result .= '<br />'.Date::timestampToDate($model->updated_at);
-            }elseif(!is_null($model->created_at) && !is_null($model->created_user)){
-                $result = $user->getFullname();
-                $result .= '<br />'.Date::timestampToDate($model->created_at);
-            }
-            else{
+        $result = '';
+        if(is_null($model->updated_at)){
+            $user = Users::findIdentity($model->created_user);/** @var $user \albertborsos\yii2cms\models\Users */
+            if(!is_null($user)){
+                if (!is_null($model->created_at) && !is_null($model->created_user)){
+                    $result = $user->getFullname();
+                    $result .= '<br />'.Date::timestampToDate($model->created_at);
+                }else{
+                    $result = 'N/A';
+                }
+            }else{
                 $result = 'N/A';
             }
         }else{
-            $result = 'N/A';
+            $user = Users::findIdentity($model->updated_user);/** @var $user \albertborsos\yii2cms\models\Users */
+            if(!is_null($user)){
+                if (!is_null($model->updated_at) && !is_null($model->updated_user)){
+                    $result = $user->getFullname();
+                    $result .= '<br />'.Date::timestampToDate($model->updated_at);
+                }
+                else{
+                    $result = 'N/A';
+                }
+            }else{
+                $result = 'N/A';
+            }
         }
 
         return $result;
