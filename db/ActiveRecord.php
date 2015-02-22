@@ -11,11 +11,15 @@ namespace albertborsos\yii2lib\db;
 use albertborsos\yii2lib\helpers\Date;
 use albertborsos\yii2lib\helpers\S;
 use albertborsos\yii2cms\models\Users;
+use albertborsos\yii2lib\wrappers\Editable;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use Yii;
 
 class ActiveRecord extends \yii\db\ActiveRecord{
+
+    const EDITABLE_TYPE_DROPDOWN = 'dropdown';
+    const EDITABLE_TYPE_TEXTINPUT = 'textinput';
 
     public function throwNewException($title){
         if (!is_null($this)) $title = '<h4>'.$title.'</h4>';
@@ -88,5 +92,16 @@ class ActiveRecord extends \yii\db\ActiveRecord{
         $cmd->bindValue(':schema_name', $schemaName);
 
         return $cmd->queryScalar();
+    }
+
+    public function editable($type, $attribute, $source = []){
+        switch($type){
+            case self::EDITABLE_TYPE_DROPDOWN:
+                return Editable::select($attribute, $this->getPrimaryKey(), $this->$attribute, S::get($source, $this->$attribute), ['updatebyeditable'], $source);
+                break;
+            case self::EDITABLE_TYPE_TEXTINPUT:
+                return Editable::input($attribute, $this->getPrimaryKey(), $this->$attribute, ['updatebyeditable']);
+                break;
+        }
     }
 } 
