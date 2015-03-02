@@ -9,6 +9,7 @@
 namespace albertborsos\yii2lib\wrappers;
 
 
+use albertborsos\yii2lib\helpers\S;
 use dosamigos\editable\Editable as XEditable;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -63,15 +64,17 @@ class Editable {
 
     public static function compileSourceArray($sourceArray){
         $result = [];
-
         foreach($sourceArray as $key => $value){
-            $result[] = [
-                'id' => $key, //select2
-                'value' => $key, // normal select
-                'text' => $value,
-            ];
+            if(is_array($value)){
+                return $sourceArray;
+            }else{
+                $result[] = [
+                    'id' => $key, //select2
+                    'value' => $key, // normal select
+                    'text' => $value,
+                ];
+            }
         }
-
         return $result;
     }
 } 

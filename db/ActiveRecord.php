@@ -94,13 +94,14 @@ class ActiveRecord extends \yii\db\ActiveRecord{
         return $cmd->queryScalar();
     }
 
-    public function editable($type, $attribute, $source = []){
+    public function editable($type, $attribute, $source = [], $pluginOptions = []){
         switch($type){
             case self::EDITABLE_TYPE_DROPDOWN:
-                return Editable::select($attribute, $this->getPrimaryKey(), $this->$attribute, S::get($source, $this->$attribute), ['updatebyeditable'], $source);
+                $compiledSource = S::get($pluginOptions, 'clientOptions.source');
+                return Editable::select($attribute, $this->getPrimaryKey(), $this->$attribute, S::get($source, $this->$attribute), ['updatebyeditable'], !is_null($compiledSource) ? $compiledSource : $source, $pluginOptions);
                 break;
             case self::EDITABLE_TYPE_TEXTINPUT:
-                return Editable::input($attribute, $this->getPrimaryKey(), $this->$attribute, ['updatebyeditable']);
+                return Editable::input($attribute, $this->getPrimaryKey(), $this->$attribute, ['updatebyeditable'], $pluginOptions);
                 break;
         }
     }
