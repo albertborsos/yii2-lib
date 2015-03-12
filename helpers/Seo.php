@@ -38,7 +38,7 @@ class Seo {
 				$view->registerLinkTag([
 					'rel' => $type,
 					'href' => $url,
-				]);
+				],$type);
 				break;
 			case self::TYPE_KEYWORDS:
 			case self::TYPE_DESCRIPTION:
@@ -46,7 +46,7 @@ class Seo {
 				$view->registerMetaTag([
 					'name' =>$type,
 					'content' => $content,
-				]);
+				], $type);
 				break;
 		}
 	}
