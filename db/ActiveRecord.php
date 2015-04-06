@@ -10,7 +10,7 @@ namespace albertborsos\yii2lib\db;
 
 use albertborsos\yii2lib\helpers\Date;
 use albertborsos\yii2lib\helpers\S;
-use albertborsos\yii2cms\models\Users;
+use albertborsos\yii2cmsmultisite\models\Users;
 use albertborsos\yii2lib\wrappers\Editable;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -33,7 +33,7 @@ class ActiveRecord extends \yii\db\ActiveRecord{
     public static function showLastModifiedInfo($model){
         $result = '';
         if(is_null($model->updated_at)){
-            $user = Users::findIdentity($model->created_user);/** @var $user \albertborsos\yii2cms\models\Users */
+            $user = Users::findIdentity($model->created_user);/** @var $user \albertborsos\yii2cmsmultisite\models\Users */
             if(!is_null($user)){
                 if (!is_null($model->created_at) && !is_null($model->created_user)){
                     $result = $user->getFullname();
@@ -45,7 +45,7 @@ class ActiveRecord extends \yii\db\ActiveRecord{
                 $result = 'N/A';
             }
         }else{
-            $user = Users::findIdentity($model->updated_user);/** @var $user \albertborsos\yii2cms\models\Users */
+            $user = Users::findIdentity($model->updated_user);/** @var $user \albertborsos\yii2cmsmultisite\models\Users */
             if(!is_null($user)){
                 if (!is_null($model->updated_at) && !is_null($model->updated_user)){
                     $result = $user->getFullname();
