@@ -21,8 +21,14 @@ class Widgets {
 				case 'error':
 					$type = 'danger';
 					break;
+                default:
+                    $exploded = explode('-', $type);
+                    if(count($exploded) > 1){
+                        $type = $exploded[0];
+                    }
+                    break;
 			}
-			return Alert::widget([
+			echo Alert::widget([
             		'options' => [
 						'class' => 'alert-'.$type,
 					],
@@ -41,7 +47,7 @@ class Widgets {
 
     public static function redactorOptions(){
         $options = [
-			//'lang' => 'en',
+			'lang' => 'hu',
             'minHeight'    => 200,
             'convertUrlLinks' => false,
             'replaceDivs'  => false,
