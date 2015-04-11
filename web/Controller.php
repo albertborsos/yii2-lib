@@ -40,11 +40,15 @@ class Controller extends WebController{
     {
         if (WebController::beforeAction($action)){
             $this->setBreadcrumbs($action);
-            if($this->module->className() == CMS2Module::className()
-                && $this->module->disableAdmin
-                && $this->className() !== CMS2DefaultController::className()){
-                $this->redirect(['/']);
+            if($this->module->className() == CMS2Module::className()){
+                if($this->module->disableAdmin && $this->className() !== CMS2DefaultController::className()){
+                    $this->redirect(['/']);
+                }
+                if($this->module->disablePublic && $this->className() == CMS2DefaultController::className()){
+                    $this->redirect(['/cms2/user/login']);
+                }
             }
+
             return true;
         }else{
             return false;
