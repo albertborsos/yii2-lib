@@ -8,6 +8,8 @@
 
 namespace albertborsos\yii2lib\web;
 
+use albertborsos\yii2cmsmultisite\controllers\DefaultController as CMS2DefaultController;
+use albertborsos\yii2cmsmultisite\Module as CMS2Module;
 use yii\base\Action;
 use yii\web\BadRequestHttpException;
 use \yii\web\Controller as WebController;
@@ -38,6 +40,11 @@ class Controller extends WebController{
     {
         if (WebController::beforeAction($action)){
             $this->setBreadcrumbs($action);
+            if($this->module->className() == CMS2Module::className()
+                && $this->module->disableAdmin
+                && $this->className() !== CMS2DefaultController::className()){
+                $this->redirect(['/']);
+            }
             return true;
         }else{
             return false;
