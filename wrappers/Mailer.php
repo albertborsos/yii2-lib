@@ -45,7 +45,7 @@ class Mailer {
 
     private static function setSender($from){
         if (is_null($from)){
-            $from = S::get(Yii::$app->params, 'adminEmail');
+            $from = S::get(Yii::$app->params, 'cms.email.owner');
             if (is_null($from)){
                 $from = self::getDefaultSenderAddress();
             }
