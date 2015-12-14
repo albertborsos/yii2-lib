@@ -12,6 +12,7 @@ use albertborsos\yii2lib\helpers\Date;
 use albertborsos\yii2lib\helpers\S;
 use albertborsos\yii2cmsmultisite\models\Users;
 use albertborsos\yii2lib\wrappers\Editable;
+use yii\base\Exception;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use Yii;
@@ -27,7 +28,7 @@ class ActiveRecord extends \yii\db\ActiveRecord{
             'header' => $title,
             'footer' => '',
         ];
-        throw new \Exception(Html::errorSummary($this, $options));
+        throw new Exception(Html::errorSummary($this, $options));
     }
 
     public static function showLastModifiedInfo($model){
