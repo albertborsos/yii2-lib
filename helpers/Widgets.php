@@ -55,7 +55,10 @@ class Widgets {
 			'removeEmptyTags' => true,
             'buttons' => ['html', 'formatting', 'bold', 'italic', 'deleted',
                 'unorderedlist', 'orderedlist', 'outdent', 'indent',
-                'image', 'link', 'alignment', 'horizontalrule']
+                'image', 'link', 'alignment', 'horizontalrule'],
+            'plugins' => [
+                'table',
+            ],
             // additional buttons
             // 'underline', 'alignleft', 'aligncenter', 'alignright', 'justify'
         ];
