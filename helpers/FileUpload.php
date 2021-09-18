@@ -1,15 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: borsosalbert
- * Date: 2014.08.12.
- * Time: 16:08
- */
 
 namespace albertborsos\yii2lib\helpers;
 
-
-use dosamigos\fileupload\BaseUpload;
 use dosamigos\fileupload\FileUploadUI;
 use dosamigos\fileupload\FileUploadUIAsset;
 use dosamigos\gallery\GalleryAsset;
@@ -17,10 +9,30 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 
 class FileUpload extends FileUploadUI{
+
+    const LIB_PATH = '@vendor/albertborsos/yii2-lib/views/fileupload/';
+    const PARENT_PATH = '@vendor/2amigos/yii2-file-upload-widget/src/views/';
+
+    /**
+     * @var string the form view path to render the JQuery File Upload UI
+     */
+    public $formView = self::LIB_PATH . 'form';
+    /**
+     * @var string the upload view path to render the js upload template
+     */
+    public $uploadTemplateView = self::PARENT_PATH . 'upload';
+    /**
+     * @var string the download view path to render the js download template
+     */
+    public $downloadTemplateView = self::PARENT_PATH . 'download';
+    /**
+     * @var string the gallery
+     */
+    public $galleryTemplateView = self::PARENT_PATH . 'gallery';
+    
     public function init()
     {
         parent::init();
-        $this->formView = '@vendor/albertborsos/yii2-lib/views/fileupload/form';
 
         $this->fieldOptions['id'] = ArrayHelper::getValue($this->options, 'id');
 
@@ -51,6 +63,4 @@ class FileUpload extends FileUploadUI{
         }
         $view->registerJs(implode("\n", $js));
     }
-
-
-} 
+}
