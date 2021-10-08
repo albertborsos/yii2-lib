@@ -40,15 +40,7 @@ class Seo {
         if(!is_null($content) && $content !== false){
             switch($type){
                 case self::TYPE_TITLE:
-                    $appName = ' | ' . Yii::$app->name;
-                    if(strpos($content, $appName)){
-                        $view->title = $content;
-                    }else{
-                        $view->title = $content . $appName;
-                    }
-                    if(strlen($view->title) >= 55){
-                        $view->title = str_replace($appName, '', $view->title);
-                    }
+                    $view->title = $content;
                     break;
                 case self::TYPE_CANONICAL:
                         $url = is_array($content) ? Yii::$app->getUrlManager()->createAbsoluteUrl($content) : $content;
