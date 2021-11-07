@@ -29,19 +29,24 @@ class Editable
         ], $pluginOptions));
     }
 
-    public static function textarea($name, $pk, $defaultValue, $url, $pluginOptions = []): string
+    public static function textarea(string $defaultValue, array $url, array $widgetOptions = []): string
     {
-        return XEditable::widget(ArrayHelper::merge([
-            'name' => $name,
+        return \kartik\editable\Editable::widget(ArrayHelper::merge([
+            'name' => 'value',
+            'asPopover' => true,
+            'displayValue' => $defaultValue,
+            'inputType' => \kartik\editable\Editable::INPUT_TEXTAREA,
             'value' => $defaultValue,
-            'url' => $url,
-            'type' => 'textarea',
-            'mode' => 'pop',
-            'clientOptions' => [
-                'pk' => $pk,
-                'placement' => 'top',
-            ]
-        ], $pluginOptions));
+            'submitOnEnter' => false,
+            'size' => 'lg',
+            'formOptions' => [
+                'action' => $url,
+            ],
+            'options' => [
+                'class' => 'form-control',
+                'rows' => 5,
+            ],
+        ], $widgetOptions));
     }
 
     public static function select($name, $pk, $defaultValue, $defaultText, $url, $sourceArray, $pluginOptions = []): string
@@ -82,7 +87,7 @@ class Editable
         ], $pluginOptions));
     }
 
-    public static function tags($name, $pk, $defaultValue, $defaultText, $url, $sourceArray, $widgetOptions = []): string
+    public static function tags(string $defaultValue, array $url, array $sourceArray, array $widgetOptions = []): string
     {
         return \kartik\editable\Editable::widget(ArrayHelper::merge([
             'name' => 'value',
