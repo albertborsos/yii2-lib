@@ -9,13 +9,13 @@
 namespace albertborsos\yii2lib\wrappers;
 
 
-use albertborsos\yii2lib\helpers\S;
 use dosamigos\editable\Editable as XEditable;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 
-class Editable {
-    public static function input($name, $pk, $defaultValue, $url, $pluginOptions = []){
+class Editable
+{
+    public static function input($name, $pk, $defaultValue, $url, $pluginOptions = []): string
+    {
         return XEditable::widget(ArrayHelper::merge([
             'name' => $name,
             'value' => $defaultValue,
@@ -28,7 +28,24 @@ class Editable {
             ]
         ], $pluginOptions));
     }
-    public static function select($name, $pk, $defaultValue, $defaultText, $url, $sourceArray, $pluginOptions = []){
+
+    public static function textarea($name, $pk, $defaultValue, $url, $pluginOptions = []): string
+    {
+        return XEditable::widget(ArrayHelper::merge([
+            'name' => $name,
+            'value' => $defaultValue,
+            'url' => $url,
+            'type' => 'textarea',
+            'mode' => 'pop',
+            'clientOptions' => [
+                'pk' => $pk,
+                'placement' => 'top',
+            ]
+        ], $pluginOptions));
+    }
+
+    public static function select($name, $pk, $defaultValue, $defaultText, $url, $sourceArray, $pluginOptions = []): string
+    {
         return XEditable::widget(ArrayHelper::merge([
             'name' => $name,
             'value' => $defaultText,
@@ -44,7 +61,9 @@ class Editable {
             ]
         ], $pluginOptions));
     }
-    public static function select2($name, $pk, $defaultValue, $defaultText, $url, $sourceArray, $pluginOptions = []){
+
+    public static function select2($name, $pk, $defaultValue, $defaultText, $url, $sourceArray, $pluginOptions = []): string
+    {
         return XEditable::widget(ArrayHelper::merge([
             'name' => $name,
             'value' => $defaultValue,
@@ -63,18 +82,37 @@ class Editable {
         ], $pluginOptions));
     }
 
-    public static function compileSourceArray($sourceArray){
+    public static function tags($name, $pk, $defaultValue, $defaultText, $url, $sourceArray, $widgetOptions = []): string
+    {
+        return \kartik\editable\Editable::widget(ArrayHelper::merge([
+            'name' => 'value',
+            'value' => $defaultValue,
+            'inputType' => \kartik\editable\Editable::INPUT_SELECT2,
+            'formOptions' => [
+                'action' => $url,
+            ],
+            'options' => [
+                'pluginOptions' => [
+                    'tags' => array_values($sourceArray),
+                    'width' => '300px',
+                    'allowClear' => true,
+                ],
+            ],
+        ], $widgetOptions));
+    }
+
+    public static function compileSourceArray($sourceArray): array
+    {
         $result = [];
-        foreach($sourceArray as $key => $value){
-            if(is_array($value)){
+        foreach ($sourceArray as $key => $value) {
+            if (is_array($value)) {
                 return $sourceArray;
-            }else{
-                $result[] = [
-                    'id' => $key, //select2
-                    'value' => $key, // normal select
-                    'text' => $value,
-                ];
             }
+            $result[] = [
+                'id' => $key, //select2
+                'value' => $key, // normal select
+                'text' => $value,
+            ];
         }
         return $result;
     }
