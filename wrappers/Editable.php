@@ -31,6 +31,7 @@ class Editable {
     public static function select($name, $pk, $defaultValue, $defaultText, $url, $sourceArray, $pluginOptions = []){
         return XEditable::widget(ArrayHelper::merge([
             'name' => $name,
+            'value' => $defaultText,
             'url' => $url,
             'type' => 'select',
             'mode' => 'pop',
