@@ -68,7 +68,7 @@ class Seo {
                     $view->registerMetaTag([
                         'property' => $type,
                         'content' => $content,
-                    ]);
+                    ], $type);
                     break;
             }
         }
