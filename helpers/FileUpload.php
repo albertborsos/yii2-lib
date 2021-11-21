@@ -2,8 +2,8 @@
 
 namespace albertborsos\yii2lib\helpers;
 
+use albertborsos\yii2lib\assets\BlueimpLoadImageAsset;
 use dosamigos\fileupload\FileUploadUI;
-use dosamigos\fileupload\FileUploadUIAsset;
 use dosamigos\gallery\GalleryAsset;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
@@ -50,7 +50,7 @@ class FileUpload extends FileUploadUI{
             GalleryAsset::register($view);
         }
 
-        FileUploadUIAsset::register($view);
+        \albertborsos\yii2lib\assets\FileUploadUIAsset::register($view);
 
         $options = Json::encode($this->clientOptions);
         $id = isset($this->clientOptions['formId']) ? $this->clientOptions['formId'] : $this->options['id'];

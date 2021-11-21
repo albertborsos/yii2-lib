@@ -15,7 +15,8 @@
         "2amigos/yii2-file-upload-widget" : "~1.0",
         "vova07/yii2-imperavi-widget": "~2.0",
         "trntv/yii2-aceeditor": "~2.0",
-        "kartik-v/yii2-editable": "^1.7"
+        "kartik-v/yii2-editable": "^1.7",
+        "npm-asset/blueimp-load-image": "4.0.1"
     },
     "repositories": [
         {
