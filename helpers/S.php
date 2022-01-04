@@ -9,10 +9,11 @@
 namespace albertborsos\yii2lib\helpers;
 
 
-use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\VarDumper;
 
-class S {
+class S
+{
     /**
      * var_dump() wrapper with autoexit
      *
@@ -22,10 +23,11 @@ class S {
      * @param int $depth
      * @return string
      */
-    public static function dump($var, $isExit = true, $asString = false, $depth = 3){
-        if ($asString){
+    public static function dump($var, $isExit = true, $asString = false, $depth = 3)
+    {
+        if ($asString) {
             return VarDumper::dumpAsString($var, $depth, true);
-        }else{
+        } else {
             VarDumper::dump($var, $depth, true);
         }
         if ($isExit) exit;
@@ -33,42 +35,24 @@ class S {
 
     /**
      * recursively returns the arrays value by key fields separated with '.'
-
-     * @param $array
-     * @param $path - string, array keys separated with '.'
-     * @param null $defaultValue
-     * @return null
+     * @param array $array
+     * @param string $path - string, array keys separated with '.'
+     * @param mixed|null $defaultValue
+     * @return mixed|null
+     * @deprecated use \yii\helpers\ArrayHelper::getValue() instead
      */
-    public static function get($array, $path, $defaultValue = null){
-
-        if (isset($array[$path])){
-            // returns the element if it has '.' in the key field
-            return $array[$path];
-        }else{
-            $keys = explode('.', $path);
-            if (count($keys) > 1){
-                //pop-olom az kulcs-ot
-                $array_key = array_shift($keys);
-                $new_path = implode('.', $keys);
-                $value = self::get($array, $array_key);
-                // rekurzívan lefut újra
-                return self::get($value, $new_path, $defaultValue);
-            }else{
-                // csak 1 elemű
-                if (is_array($array)){
-                    return isset($array[$path]) ? $array[$path] : $defaultValue;
-                }else{
-                    return $defaultValue;
-                }
-            }
-        }
+    public static function get($array, $path, $defaultValue = null)
+    {
+        return ArrayHelper::getValue($array, $path, $defaultValue);
     }
 
-    public static function powered(){
+    public static function powered()
+    {
         return 'Powered by <a href="http://www.yiiframework.com/" rel="external" target="_blank">Yii Framework</a>';
     }
 
-    public static function divider($visible = true){
+    public static function divider($visible = true)
+    {
         $hidden = $visible ? '' : ' hidden';
         return '<li class="divider' . $hidden . '"></li>';
     }
