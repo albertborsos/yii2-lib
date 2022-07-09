@@ -89,7 +89,8 @@ class Editable
 
     public static function tags(string $defaultValue, array $url, array $sourceArray, array $widgetOptions = []): string
     {
-        return \kartik\editable\Editable::widget(ArrayHelper::merge([
+        $editableId = uniqid('editable_');
+        return \albertborsos\yii2lib\widgets\Editable::widget(ArrayHelper::merge([
             'name' => 'value',
             'value' => $defaultValue,
             'inputType' => \kartik\editable\Editable::INPUT_SELECT2,
@@ -97,10 +98,17 @@ class Editable
                 'action' => $url,
             ],
             'options' => [
+                'id' => $editableId,
+                'value' => explode(',', $defaultValue),
+                'initValueText' => $defaultValue,
+                'data' => array_combine(array_values($sourceArray), array_values($sourceArray)),
+                'showToggleAll' => false,
                 'pluginOptions' => [
-                    'tags' => array_values($sourceArray),
-                    'width' => '300px',
+                    'dropdownParent' => "#{$editableId}-popover",
+                    'tags' => false,
+                    'multiple' => true,
                     'allowClear' => true,
+                    'tokenSeparators' => ',',
                 ],
             ],
         ], $widgetOptions));
