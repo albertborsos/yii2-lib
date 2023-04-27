@@ -11,13 +11,14 @@ namespace albertborsos\yii2lib\helpers;
 
 use Yii;
 
-class Seo {
+class Seo
+{
 
-	const TYPE_CANONICAL = 'canonical';
-	const TYPE_KEYWORDS = 'keywords';
-	const TYPE_DESCRIPTION = 'description';
-	const TYPE_TITLE = 'title';
-	const TYPE_ROBOTS = 'robots';
+    const TYPE_CANONICAL = 'canonical';
+    const TYPE_KEYWORDS = 'keywords';
+    const TYPE_DESCRIPTION = 'description';
+    const TYPE_TITLE = 'title';
+    const TYPE_ROBOTS = 'robots';
 
     const TYPE_FB_TITLE = 'og:title';
     const TYPE_FB_SITE_NAME = 'og:site_name';
@@ -32,75 +33,78 @@ class Seo {
     const FB_TYPE_PRODUCT = 'product';
     const FB_TYPE_PRODUCT_GROUP = 'product.group';
 
-	const INDEX = 'INDEX';
-	const NOINDEX = 'NOINDEX';
+    const INDEX = 'INDEX';
+    const NOINDEX = 'NOINDEX';
 
-	public static function registerTag($type, $content){
-		$view = Yii::$app->getView();
-        if(!is_null($content) && $content !== false){
-            switch($type){
-                case self::TYPE_TITLE:
-                    $view->title = $content;
-                    break;
-                case self::TYPE_CANONICAL:
-                        $url = is_array($content) ? Yii::$app->getUrlManager()->createAbsoluteUrl($content) : $content;
-                        $view->registerLinkTag([
-                            'rel' => $type,
-                            'href' => $url,
-                        ],$type);
-                    break;
-                case self::TYPE_KEYWORDS:
-                case self::TYPE_DESCRIPTION:
-                case self::TYPE_ROBOTS:
-                    $view->registerMetaTag([
-                        'name' =>$type,
-                        'content' => $content,
-                    ], $type);
-                    break;
-                case self::TYPE_FB_TITLE:
-                case self::TYPE_FB_SITE_NAME:
-                case self::TYPE_FB_TYPE:
-                case self::TYPE_FB_SHARE_URL:
-                case self::TYPE_FB_LOCALE:
-                case self::TYPE_FB_DESCRIPTION:
-                case self::TYPE_FB_IMAGE:
-                case self::TYPE_FB_APP_ID:
-                    $view->registerMetaTag([
-                        'property' => $type,
-                        'content' => $content,
-                    ], $type);
-                    break;
+    public static function registerTag($type, $content)
+    {
+        $view = Yii::$app->getView();
+        if (empty($content)) {
+            return;
+        }
+        switch ($type) {
+            case self::TYPE_TITLE:
+                $view->title = $content;
+                break;
+            case self::TYPE_CANONICAL:
+                $url = is_array($content) ? Yii::$app->getUrlManager()->createAbsoluteUrl($content) : $content;
+                $view->registerLinkTag([
+                    'rel' => $type,
+                    'href' => $url,
+                ], $type);
+                break;
+            case self::TYPE_KEYWORDS:
+            case self::TYPE_DESCRIPTION:
+            case self::TYPE_ROBOTS:
+                $view->registerMetaTag([
+                    'name' => $type,
+                    'content' => $content,
+                ], $type);
+                break;
+            case self::TYPE_FB_TITLE:
+            case self::TYPE_FB_SITE_NAME:
+            case self::TYPE_FB_TYPE:
+            case self::TYPE_FB_SHARE_URL:
+            case self::TYPE_FB_LOCALE:
+            case self::TYPE_FB_DESCRIPTION:
+            case self::TYPE_FB_IMAGE:
+            case self::TYPE_FB_APP_ID:
+                $view->registerMetaTag([
+                    'property' => $type,
+                    'content' => $content,
+                ], $type);
+                break;
+        }
+    }
+
+    public static function noIndex()
+    {
+        $view = Yii::$app->getView();
+
+        self::removeItemFromMetaTags(Seo::TYPE_ROBOTS);
+
+        $view->registerMetaTag([
+            'name' => Seo::TYPE_ROBOTS,
+            'content' => Seo::NOINDEX,
+        ]);
+    }
+
+    public static function removeItemFromMetaTags($needle)
+    {
+        $metaTags = Yii::$app->getView()->metaTags;
+        if (!is_null($metaTags)) {
+            $results = array_filter($metaTags, function ($item) use ($needle) {
+                if (stripos($item, $needle) !== false) {
+                    return true;
+                }
+                return false;
+            });
+
+            foreach ($results as $key => $value) {
+                if (isset($metaTags[$key])) {
+                    unset(Yii::$app->getView()->metaTags[$key]);
+                }
             }
         }
-	}
-
-	public static function noIndex(){
-		$view = Yii::$app->getView();
-
-		self::removeItemFromMetaTags(Seo::TYPE_ROBOTS);
-
-		$view->registerMetaTag([
-			'name' =>Seo::TYPE_ROBOTS,
-			'content' => Seo::NOINDEX,
-		]);
-	}
-
-	public static function removeItemFromMetaTags($needle){
-		$metaTags = Yii::$app->getView()->metaTags;
-		if(!is_null($metaTags)){
-			$results = array_filter($metaTags, function ($item) use ($needle) {
-				if (stripos($item, $needle) !== false) {
-					return true;
-				}
-				return false;
-			});
-
-			foreach($results as $key => $value){
-				if(isset($metaTags[$key])){
-					unset(Yii::$app->getView()->metaTags[$key]);
-				}
-			}
-		}
-
-	}
+    }
 }
